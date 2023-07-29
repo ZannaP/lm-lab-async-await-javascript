@@ -22,3 +22,27 @@ const fetchData = async (apiEndPoint) => {
 };
 
 fetchData(jsonTypicode);
+
+// Task 2
+const fetchFunData = async (txt, apiEndPoint) => {
+  try {
+    const response = await fetch(
+      apiEndPoint + "?text=" + encodeURIComponent(txt)
+    );
+    const json = await response.json();
+    console.log(json);
+    return json;
+  } catch (error) {
+    console.log("Ups... ");
+    new Error("rejected!");
+  }
+};
+
+const yoda = await fetchFunData(
+  "There was a farmer who had a dog",
+  "https://api.funtranslations.com/translate/yoda.json"
+);
+console.log("--------");
+yoda.error
+  ? console.log(yoda.error.message)
+  : console.log(yoda.contents?.translated);
