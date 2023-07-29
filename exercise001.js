@@ -29,4 +29,4 @@ const processPromise = async () => {
     console.error(`Boo. Promise rejected with response: ${e}`);
   }
 };
-processPromise();
+await processPromise();
